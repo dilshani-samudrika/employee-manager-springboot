@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f6f9;
+        }
+
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 7px 0 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #1769aa;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error { color: #c62828; }
+    </style>
+</head>
+<body>
+
+<h1>Edit Employee</h1>
+
+<form th:action="@{/employees/{id}/update(id=${employee.id})}"
+      th:object="${employee}" method="post">
+
+    <label>Full Name</label>
+    <input type="text" th:field="*{fullName}">
+    <div class="error" th:errors="*{fullName}"></div>
+
+    <label>Email</label>
+    <input type="email" th:field="*{email}">
+    <div class="error" th:errors="*{email}"></div>
+
+    <label>Phone</label>
+    <input type="text" th:field="*{phone}">
+    <div class="error" th:errors="*{phone}"></div>
+
+    <label>Department</label>
+    <input type="text" th:field="*{department}">
+    <div class="error" th:errors="*{department}"></div>
+
+    <label>Salary</label>
+    <input type="number" step="0.01" th:field="*{salary}">
+    <div class="error" th:errors="*{salary}"></div>
+
+    <button type="submit">Update Employee</button>
+</form>
+
+<p><a href="/employees">Back to Employee List</a></p>
+
+</body>
+</html>
